@@ -15,6 +15,9 @@ app.set('views', './views');
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 
+// middleware to parse form data
+app.use(express.urlencoded({extended:true}));
+
 // middleware to access static files in assets folder
 app.use(express.static('./assets'));
 

@@ -3,8 +3,9 @@ const employeeController = require('../controllers/employee_controller');
 
 const router = express.Router();
 
-// route request to signup action of employee controller
+// route requests
 router.get('/signup', employeeController.signUp);
+router.post('/create', employeeController.create); //route request to create action
 
 // export the router
 module.exports = router;
