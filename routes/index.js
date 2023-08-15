@@ -9,8 +9,9 @@ const homeController = require('../controllers/home_controller');
 
 console.log('Router loaded'); //just a check
 
-// route the request
+// route the requests
 router.get('/', homeController.home);
+router.use('/employee', require('./employee')); //route request to employee router
 
 // export the router
 module.exports = router;
