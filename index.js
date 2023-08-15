@@ -14,6 +14,9 @@ app.set('views', './views');
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
 
+// middleware to access static files in assets folder
+app.use(express.static('./assets'));
+
 // use express layouts
 app.use(expressLayouts);
 
