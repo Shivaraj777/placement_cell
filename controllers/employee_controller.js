@@ -8,6 +8,13 @@ module.exports.signUp = function(req, res){
     });
 }
 
+// action to render login page
+module.exports.signIn = function(req, res){
+    return res.render('employee_login', {
+        title: 'Employee Login page'
+    });
+}
+
 // action to signup a employee
 module.exports.create = async function(req, res){
     // do not signup employee if password does not match
