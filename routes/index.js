@@ -12,4 +12,5 @@ console.log('Router loaded'); //just a check
 // route the request
 router.get('/', homeController.home);
 
+// export the router
 module.exports = router;
