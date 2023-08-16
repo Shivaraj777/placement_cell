@@ -3,6 +3,7 @@
 const express = require('express'); // import the express module
 const expressLayouts = require('express-ejs-layouts'); // import express-ejs-layouts module
 const db = require('./config/mongoose'); // import themongoose module
+const cookieParser = require('cookie-parser'); //import cookie parser module
 
 const app =  express(); // create the express app
 const port = 8000; // define the port
@@ -17,6 +18,9 @@ app.set('layout extractScripts', true);
 
 // middleware to parse form data
 app.use(express.urlencoded({extended:true}));
+
+// middleware to read and write into cookies
+app.use(cookieParser());
 
 // middleware to access static files in assets folder
 app.use(express.static('./assets'));
