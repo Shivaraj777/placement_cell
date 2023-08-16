@@ -29,7 +29,7 @@ module.exports.create = async function(req, res){
         // if employee account does not exist, create employee
         if(!employee){
             await Employee.create(req.body);
-            return res.redirect('/');
+            return res.redirect('/employee/sign-in');
         }else{
             return res.redirect('back');
         }
