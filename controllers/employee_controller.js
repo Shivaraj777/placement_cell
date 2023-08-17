@@ -3,6 +3,11 @@ const Employee = require('../models/employee');
 
 // action to render signup page
 module.exports.signUp = function(req, res){
+    // if user is logged in redirect to home page
+    if(req.isAuthenticated()){
+        res.redirect('/');
+    }
+
     return res.render('employee_signup', {
         title: 'Employee SignUp page'
     });
@@ -10,6 +15,11 @@ module.exports.signUp = function(req, res){
 
 // action to render login page
 module.exports.signIn = function(req, res){
+    // if user is logged in redirect to home page
+    if(req.isAuthenticated()){
+        res.redirect('/');
+    }
+    
     return res.render('employee_login', {
         title: 'Employee Login page'
     });

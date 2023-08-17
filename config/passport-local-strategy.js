@@ -55,5 +55,25 @@ passport.deserializeUser(function(id, done){
         });
 });
 
+// middleware to check if employee is signed-in
+passport.checkAuthentication = function(req, res, next){
+    // if employee is signed-in proceed to next middleware/action
+    if(req.isAuthenticated()){
+        return next();
+    }
+
+    res.redirect('/employee/login'); //redirect to login page if employee is not signed-in
+}
+
+// middleware to send employee data to views
+passport.setAuthenticatedUser = function(req, res, next){
+    if(req.isAuthenticated()){
+        // console.log(req);
+        res.locals.employee = req.user;
+    }
+
+    next();
+}
+
 //exporting the passport module
 module.exports = passport;

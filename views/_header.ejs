@@ -7,13 +7,19 @@
         </div>
         <div class="nav-right">
             <ul>
-                <li>Username</li>
-                <li>
-                    <a href="/employee/sign-in">Login</a>
-                </li>
-                <li>
-                    <a href="/employee/signup">SignUp</a>
-                </li>
+                <% if(locals.employee){ %>
+                    <li><%= locals.employee.name %></li>
+                    <li>
+                        <a href="#">Logout</a>
+                    </li>
+                <% }else{ %>
+                    <li>
+                        <a href="/employee/sign-in">Login</a>
+                    </li>
+                    <li>
+                        <a href="/employee/signup">SignUp</a>
+                    </li>
+                <% } %>
             </ul>
         </div>
     </nav>

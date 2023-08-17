@@ -1,1 +1,8 @@
 <h1>Placement cell <%= title %></h1>
+
+<% if(locals.employee) { %>
+    <div>
+        <p><%= locals.employee.name %></p>
+        <p><%= locals.employee.email %></p>
+    </div>
+<% } %>

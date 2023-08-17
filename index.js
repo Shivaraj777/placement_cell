@@ -46,6 +46,9 @@ app.use(session({
 app.use(passport.initialize()); //initialize the session
 app.use(passport.session()); //maintain the session
 
+// set employee in the views
+app.use(passport.setAuthenticatedUser);
+
 // use express router
 app.use('/', require('./routes')); //routes the request to index.js file of routes folder
 
