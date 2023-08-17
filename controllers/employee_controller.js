@@ -38,3 +38,8 @@ module.exports.create = async function(req, res){
         return res.redirect('back');
     }
 }
+
+// action to create session
+module.exports.createSession = function(req, res){
+    return res.redirect('/');
+}

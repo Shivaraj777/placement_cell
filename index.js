@@ -4,6 +4,9 @@ const express = require('express'); // import the express module
 const expressLayouts = require('express-ejs-layouts'); // import express-ejs-layouts module
 const db = require('./config/mongoose'); // import themongoose module
 const cookieParser = require('cookie-parser'); //import cookie parser module
+const passport = require('passport'); //import passport module
+const passportLocal = require('./config/passport-local-strategy'); //import passport local strategy module from configs
+const session = require('express-session');  //import expression-session module
 
 const app =  express(); // create the express app
 const port = 8000; // define the port
@@ -27,6 +30,21 @@ app.use(express.static('./assets'));
 
 // use express layouts
 app.use(expressLayouts);
+
+// use expression session middleware to maintain the session cookies
+app.use(session({
+    name: 'placement_cell', //name of the session cookie
+    secret: 'somesecretcode', //secret key used to encrypt the session-cookie
+    saveUninitialized: false, //if user is not logged in, do not save session-cookie
+    resave: false, //if the session-cookie is not modified do not save it
+    cookie: {
+        maxAge: (1000 * 60 * 100)
+    }
+}));
+
+// use passport middlewares
+app.use(passport.initialize()); //initialize the session
+app.use(passport.session()); //maintain the session
 
 // use express router
 app.use('/', require('./routes')); //routes the request to index.js file of routes folder
