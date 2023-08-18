@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser'); //import cookie parser module
 const passport = require('passport'); //import passport module
 const passportLocal = require('./config/passport-local-strategy'); //import passport local strategy module from configs
 const session = require('express-session');  //import expression-session module
+const MongoStore = require('connect-mongo'); //import connect-mongo module to store session info in DB
 
 const app =  express(); // create the express app
 const port = 8000; // define the port
@@ -39,7 +40,16 @@ app.use(session({
     resave: false, //if the session-cookie is not modified do not save it
     cookie: {
         maxAge: (1000 * 60 * 100)
-    }
+    },
+    store: new MongoStore(
+        {
+            mongoUrl: 'mongodb://127.0.0.1/placement_cell',  //connecting to the database
+            autoRemove: 'disabled'  //do not remove the session from the database even if it expires
+        },
+        function(err){
+            console.log(err || 'connect-mongodb setup ok');
+        }
+    )
 }));
 
 // use passport middlewares

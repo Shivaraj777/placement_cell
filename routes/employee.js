@@ -12,6 +12,7 @@ router.post('/create-session', passport.authenticate(
     'local', //use local strategy
     {failureRedirect: '/employee/sign-in'} 
 ), employeeController.createSession); //route request to createSession action
+router.get('/destroy-session', employeeController.destroySession); //route request to destroy session action
 
 // export the router
 module.exports = router;

@@ -5,7 +5,7 @@ const Employee = require('../models/employee');
 module.exports.signUp = function(req, res){
     // if user is logged in redirect to home page
     if(req.isAuthenticated()){
-        res.redirect('/');
+        return res.redirect('/');
     }
 
     return res.render('employee_signup', {
@@ -17,7 +17,7 @@ module.exports.signUp = function(req, res){
 module.exports.signIn = function(req, res){
     // if user is logged in redirect to home page
     if(req.isAuthenticated()){
-        res.redirect('/');
+        return res.redirect('/');
     }
     
     return res.render('employee_login', {
@@ -52,4 +52,16 @@ module.exports.create = async function(req, res){
 // action to create session
 module.exports.createSession = function(req, res){
     return res.redirect('/');
+}
+
+// action to destroy session
+module.exports.destroySession = function(req, res){
+    // built-in passport method to destroy the session
+    req.logout((err) => {
+        if(err){
+            return next(err);
+        }
+
+        return res.redirect('/');
+    });
 }
