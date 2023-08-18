@@ -1,8 +1,18 @@
+<link type="text/css" rel="stylesheet" href="/css/home.css">
+
 <h1>Placement cell <%= title %></h1>
 
 <% if(locals.employee) { %>
-    <div>
-        <p><%= locals.employee.name %></p>
-        <p><%= locals.employee.email %></p>
+    <div class="employee-home-view">
+        <a href="#">
+            <div class="nav-to-stud">Students page</div>
+        </a>
+        <a href="#">
+            <div class="nav-to-int">Interviews page</div>
+        </a>
+    </div>
+<% }else { %>
+    <div class="home-view">
+        <p>Welcome to Placement cell application, Please login to continue.</p>
     </div>
 <% } %>

@@ -1,0 +1,38 @@
+h1{
+    text-align: center;
+}
+
+.employee-home-view{
+    width: 100%;
+    margin-top: 8rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    box-sizing: border-box;
+    padding: 0 20rem;
+}
+
+.employee-home-view div{
+    height: 200px;
+    width: 200px;
+    text-align: center;
+    font-size: larger;
+    color: black;
+    background-color: #E6E6FA;
+    box-sizing: border-box;
+    margin-right: 2rem;
+    padding-top: 5rem;
+    border-radius: 40px;
+}
+
+.employee-home-view div:hover{
+    cursor: pointer;
+    background-color: #d2d2f3;
+}
+
+.home-view{
+    margin-top: 12rem;
+    text-align: center;
+    color: darkgray;
+    font-size: x-large;
+}
