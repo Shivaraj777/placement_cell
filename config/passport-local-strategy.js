@@ -62,7 +62,7 @@ passport.checkAuthentication = function(req, res, next){
         return next();
     }
 
-    res.redirect('/employee/login'); //redirect to login page if employee is not signed-in
+    res.redirect('/employee/sign-in'); //redirect to login page if employee is not signed-in
 }
 
 // middleware to send employee data to views
