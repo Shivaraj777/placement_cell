@@ -6,11 +6,15 @@
 
 #form-section{
     height: 91.2vh;
-    width: 30%;
+    width: 25%;
     min-width: 200px;
     box-sizing: border-box;
     padding: 15px;
     border: 1px solid black;
+}
+
+#form-section h3{
+    text-align: center;
 }
 
 #form-section button{
@@ -30,6 +34,10 @@
     height: 100%;
     box-sizing: border-box;
     padding: 15px;
+}
+
+#student-details h3{
+    text-align: center;
 }
 
 table, th, td {

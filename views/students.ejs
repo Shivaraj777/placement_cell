@@ -1,19 +1,28 @@
 <link type="text/css" rel="stylesheet" href="/css/students.css">
 <div id="students-container">
     <section id="form-section">
+        <h3>Add new student</h3>
         <form action="/students/create-student" method="post">
-            <label>Name: </label><input id="name" type="text" name="name" placeholder="Student Name" required><br><br>
-            <label>Email: </label><input id="email" type="text" name="email" placeholder="example@email.com" required><br><br>
-            <label>Batch: </label><input id="batch" type="text" name="batch" placeholder="Batch Details" required><br><br>
-            <label>College: </label><input id="college" type="text" name="college" placeholder="college" required><br><br>
-            <label>DSA Score: </label><input id="DSA_FinalScore" type="text" name="DSA_FinalScore" placeholder="DSA Score" required><br><br>
-            <label>Web Dev Score: </label><input id="WebD_FinalScore" type="text" name="WebD_FinalScore" placeholder="WebD Score" required><br><br>
-            <label>React Score: </label><input id="React_FinalScore" type="text" name="React_FinalScore" placeholder="React_FinalScore" required><br><br>
+            <label>Name: </label><br>
+            <input id="name" type="text" name="name" placeholder="Student Name" required><br><br>
+            <label>Email: </label><br>
+            <input id="email" type="text" name="email" placeholder="example@email.com" required><br><br>
+            <label>Batch: </label><br>
+            <input id="batch" type="text" name="batch" placeholder="Batch Details" required><br><br>
+            <label>College: </label><br>
+            <input id="college" type="text" name="college" placeholder="college" required><br><br>
+            <label>DSA Score: </label><br>
+            <input id="DSA_FinalScore" type="text" name="DSA_FinalScore" placeholder="DSA Score" required><br><br>
+            <label>Web Dev Score: </label><br>
+            <input id="WebD_FinalScore" type="text" name="WebD_FinalScore" placeholder="WebD Score" required><br><br>
+            <label>React Score: </label><br>
+            <input id="React_FinalScore" type="text" name="React_FinalScore" placeholder="React_FinalScore" required><br><br>
             <button>Submit</button>
         </form>
     </section>
 
     <section id="student-details">
+        <h3>Student Details</h3>
         <table>
             <tr>
                 <th>Name</th>
@@ -24,6 +33,17 @@
                 <th>React Score</th>
                 <th>Placement Status</th>
             </tr>
+            <% for(let student of students){ %>
+                <tr>
+                    <td><%= student.name %></td>
+                    <td><%= student.college %></td>
+                    <td><%= student.batch %></td>
+                    <td><%= student.DSA_FinalScore %></td>
+                    <td><%= student.WebD_FinalScore %></td>
+                    <td><%= student.React_FinalScore %></td>
+                    <td><%= student.status %></td>
+                </tr>
+            <% } %>
         </table>
     </section>
 </div>

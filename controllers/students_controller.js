@@ -3,10 +3,19 @@
 const Student = require('../models/student');
 
 // render students page
-module.exports.displayStudents = function(req, res){
-    res.render('students', {
-        title: 'Student Details page'
-    });
+module.exports.displayStudents = async function(req, res){
+    try{
+        // fetch all the students from database
+        const students = await Student.find({});
+
+        // render the page
+        return res.render('students', {
+            title: 'Student Details page',
+            students: students
+        });
+    }catch(err){
+        console.log(`Error: ${err}`);
+    }
 }
 
 // action to create a student
