@@ -1,0 +1,33 @@
+<link type="text/css" rel="stylesheet" href="/css/interviews.css">
+<div id="interview-page-container">
+    <section id="forms-container">
+        <div class="create-interview-form">
+            <h3>Create Interview</h3>
+            <form action="" method="post">
+                <label>Company Name:</label><br>
+                <input id="company-name" type="text" name="company_name" placeholder="Company name" required><br><br>
+                <label>Interview Date:</label><br>
+                <input id="interview-date" type="date" name="interview_date" required><br><br>
+                <button>Create Interview</button>
+            </form>
+        </div>
+        <div class="assign-interview-form">
+            <h3>Assign Student to Interview</h3>
+            <form action="" method="put">
+                <label>Student Email:</label><br>
+                <input id="student-email" type="text" name="student_email" required><br><br>
+                <label>Company Name:</label><br>
+                <input type="text" name="company_name" placeholder="Company name" required><br><br>
+                <button>Assign Interview</button>
+            </form>
+        </div>
+    </section>
+
+    <main id="interview-details">
+        <h3>Interview Details</h3>
+        <div class="interview-container">
+            <span>Company name</span>
+            <span>Interview date</p>
+        </div>
+    </main>
+</div>

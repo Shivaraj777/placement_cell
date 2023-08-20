@@ -13,6 +13,7 @@ console.log('Router loaded'); //just a check
 router.get('/', homeController.home);
 router.use('/employee', require('./employee')); //route request to employee router
 router.use('/students', require('./students')); //route request to students router
+router.use('/interviews', require('./interviews')); //route request to interviews router
 
 // export the router
 module.exports = router;
