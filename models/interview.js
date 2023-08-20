@@ -14,9 +14,9 @@ const interviewSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Student'
     }],
-    interviews: [{
+    results: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Interview'
+        ref: 'Result'
     }]
 }, {
     timestamps: true
