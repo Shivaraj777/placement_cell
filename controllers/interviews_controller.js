@@ -1,12 +1,23 @@
 // Description: this file contains the actions related to interviews
 
 const Interview = require('../models/interview'); //import the interview model
+const { formatDate } = require('../utils');
 
 // action to render interviews page
-module.exports.displayInterviews = function(req, res){
-    return res.render('interviews', {
-        title: 'Display Interviews page'
-    });
+module.exports.displayInterviews = async function(req, res){
+    try{
+        // fetch the interviews
+        const interviews = await Interview.find({});
+
+        return res.render('interviews', {
+            title: 'Display Interviews page',
+            interviews: interviews,
+            formatDate: formatDate
+        });
+    }catch(err){
+        console.log(`Error: ${err}`);
+        return res.redirect('back');
+    }
 }
 
 // action to create interview
