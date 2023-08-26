@@ -35,7 +35,11 @@ const studentSchema = mongoose.Schema({
     React_FinalScore :{
         type : Number,
         default:0
-    }
+    },
+    interviews: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'Interview'
+    }]
 }, {
     timestamps: true
 });

@@ -13,11 +13,21 @@
         </div>
         <div class="assign-interview-form">
             <h3>Assign Student to Interview</h3>
-            <form action="" method="put">
+            <form action="/interviews/assign-interview" method="post">
                 <label>Student Email:</label><br>
-                <input id="student-email" type="text" name="student_email" required><br><br>
+                <select id="select-student" name="student_email" required>
+                    <option value="" disabled selected hidden>Select Student</option>
+                    <% for(let student of students){ %>
+                        <option value="<%= student.email %>"><%= student.email %></option>
+                    <% } %>
+                </select><br><br>
                 <label>Company Name:</label><br>
-                <input type="text" name="company_name" placeholder="Company name" required><br><br>
+                <select id="select-company" name="company_name" required>
+                    <option value="" disabled selected hidden>Select Company</option>
+                    <% for(let interview of interviews){ %>
+                        <option value="<%= interview.company_name %>"><%= interview.company_name %></option>
+                    <% } %>
+                </select><br><br>
                 <button>Assign Interview</button>
             </form>
         </div>

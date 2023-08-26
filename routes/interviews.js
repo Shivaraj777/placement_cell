@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.get('/display-interviews', passport.checkAuthentication, interviewController.displayInterviews); //route the request to displayInterviews action
 router.post('/create-interview', interviewController.createInterview); //route the request to createInterview action
+router.post('/assign-interview', interviewController.assignInterview); //route the request to assignInterview action
 
 // export the router
 module.exports = router;
