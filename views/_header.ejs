@@ -2,7 +2,11 @@
     <nav>
         <div class="nav-left">
             <span>
-                <a href="/">Placement Cell</a>
+                <% if(locals.employee){ %>
+                    <a href="/">Home</a>
+                <% }else{ %>
+                    <a href="/">Placement Cell</a>
+                <% } %>
             </span>
         </div>
         <div class="nav-right">
