@@ -22,27 +22,53 @@
     margin-bottom: 4rem;
 }
 
-#interview-details{
+#interview-details-view{
     width: 75%;
+    max-height: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     box-sizing: border-box;
     padding: 10px;
+    overflow-y: scroll;
 }
 
-#interview-details h3{
+#interview-details-view h3{
     text-align: center;
 }
 
 .interview-container{
+    margin-bottom: 2rem;
+}
+
+.interview-details{
     height: 4rem;
-    width: 30em;
+    width: 40em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     box-sizing: border-box;
-    margin-bottom: 2rem;;
     padding: 15px;
     border: 1px solid black;
+}
+
+.interview-details .fa-angle-down:hover{
+    cursor: pointer;
+}
+
+.students-list{
+    width: 100%;
+}
+
+.students-list table{
+    width: 100%;
+}
+
+.students-list table, th, td{
+    border: 1px solid black;
+}
+
+
+.display-none{
+    display: none;
 }

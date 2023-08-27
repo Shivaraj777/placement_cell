@@ -9,7 +9,7 @@ const { formatDate } = require('../utils');
 module.exports.displayInterviews = async function(req, res){
     try{
         // fetch the interviews
-        const interviews = await Interview.find({});
+        const interviews = await Interview.find({}).populate('students').populate('results').exec();
         const students = await Student.find({});
 
         return res.render('interviews', {

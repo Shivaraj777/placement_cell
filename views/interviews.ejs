@@ -33,13 +33,51 @@
         </div>
     </section>
 
-    <main id="interview-details">
+    <main id="interview-details-view">
         <h3>Interview Details</h3>
         <% for(let interview of interviews){ %>
             <div class="interview-container">
-                <span><%= interview.company_name %></span>
-                <span><%= formatDate(interview.interview_date) %></span>
+                <div class="interview-details">
+                    <span><%= interview.company_name %></span>
+                    <span><%= formatDate(interview.interview_date) %></span>
+                    <i id="<%= interview._id %>" class="fa-solid fa-angle-down"></i>
+                </div>
+                <div class="students-list display-none" id="interview-assgn-<%= interview._id %>">
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Result Status</th>
+                            <th>Update Result Status</th>
+                        </tr>
+                        <% for(let student of interview.students){ %>
+                            <tr>
+                                <td><%= student.name %></td>
+                                <td><%= student.email %></td>
+                                <% for(let result of interview.results){ %>
+                                    <% if(result.studentId == student.id){ %>
+                                        <td><%= result.result %></td>
+                                        <td>
+                                            <form action="" method="put">
+                                                <select>
+                                                    <option value="PASS">PASS</option>
+                                                    <option value="FAIL">FAIL</option>
+                                                    <option value="ON HOLD">ON HOLD</option>
+                                                    <option value="DID NOT ATTEMPT">DID NOT ATTEMPT</option>
+                                                </select><br><br>
+                                                <input type="hidden" name="result" value="<% result.id %>">
+                                                <button>Update</button>
+                                            </form>
+                                        </td>
+                                    <% } %>
+                                <% } %>
+                            </tr>
+                        <% } %>
+                    </table>
+                </div>
             </div>
         <% } %>
     </main>
+
+    <script type="text/javascript" src="/js/interview.js"></script>
 </div>

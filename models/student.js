@@ -37,7 +37,7 @@ const studentSchema = mongoose.Schema({
         default:0
     },
     interviews: [{
-        type: mongoose.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Interview'
     }]
 }, {
