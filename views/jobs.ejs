@@ -1,0 +1,20 @@
+<link type="text/css" rel="stylesheet" href="/css/jobs.css">
+<div id="jobs-list-container">
+    <% for(let job of jobs){ %>
+        <div class="job-container">
+            <div class="job-header">
+                <img src="<%= job.company_logo %>" alt="company-img" height="100px" width="100px">
+                <span><%= job.company_name %></span>
+            </div>
+            <div class="job-details">
+                <p>Job Title: <%= job.title %></p>
+                <p>Job Type: <%= job.job_type %></p>
+                <p>Job Location: <%= job.candidate_required_location %></p>
+                <p>Published date: <%= job.publication_date %></p>
+                <a href="<%= job.url %>" target="_blank">
+                    <button>Apply</button>
+                </a>
+            </div>
+        </div>
+    <% } %>
+</div>

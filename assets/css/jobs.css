@@ -1,0 +1,40 @@
+#jobs-list-container{
+    display:flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.job-container{
+    height: 20rem;
+    width: 30em;
+    box-sizing: border-box;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 2rem;
+}
+
+.job-header{
+    display: flex;
+    flex-direction: row;
+}
+
+.job-header span{
+    display: block;
+    font-size: x-large;
+    box-sizing: border-box;
+    padding-top: 50px;
+    padding-left: 5px;
+} 
+
+.job-details a button{
+    height: 2rem;
+    width: 5em;
+    background-color: #2196f3;
+    color: whitesmoke;
+    border: none;
+    border-radius: 5px;
+}
+
+.job-details a button:hover{
+    cursor: pointer;
+}
