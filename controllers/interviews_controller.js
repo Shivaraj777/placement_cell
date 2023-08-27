@@ -73,9 +73,29 @@ module.exports.assignInterview = async function(req, res){
             // add the interview details to student records
             student.interviews.push(interview._id);
             student.save();
-
-            return res.redirect('back');
         }
+
+        return res.redirect('back');
+    }catch(err){
+        console.log(`Error: ${err}`);
+        return;
+    }
+}
+
+// action to update interview status for a student
+module.exports.updateInterviewStatus = async function(req, res){
+    try{
+        // find the result to be updated
+        const result = await Result.findByIdAndUpdate(req.body.result, {$set: {result: req.body.student_interview_result}}, {new: true});
+        console.log('*****Student interview status updated*****');
+
+        // if interview result is passed set student placement status to placed
+        if(result && result.result === 'PASS'){
+            await Student.findByIdAndUpdate(result.studentId, {$set: {status: 'Placed'}});
+            console.log('*****Student placement status updated*****');
+        }
+
+        res.redirect('back');
     }catch(err){
         console.log(`Error: ${err}`);
         return;

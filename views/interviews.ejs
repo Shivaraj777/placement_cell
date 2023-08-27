@@ -58,14 +58,15 @@
                                     <% if(result.studentId == student.id){ %>
                                         <td><%= result.result %></td>
                                         <td>
-                                            <form action="" method="put">
-                                                <select>
+                                            <form action="/interviews/update-interview-status" method="post">
+                                                <select name="student_interview_result">
+                                                    <option value="" disabled selected hidden>Update Status</option>
                                                     <option value="PASS">PASS</option>
                                                     <option value="FAIL">FAIL</option>
                                                     <option value="ON HOLD">ON HOLD</option>
                                                     <option value="DID NOT ATTEMPT">DID NOT ATTEMPT</option>
                                                 </select><br><br>
-                                                <input type="hidden" name="result" value="<% result.id %>">
+                                                <input type="hidden" name="result" value="<%= result.id %>">
                                                 <button>Update</button>
                                             </form>
                                         </td>
