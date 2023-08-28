@@ -5,7 +5,7 @@
 }
 
 #form-section{
-    height: 91.2vh;
+    height: 91.5vh;
     width: 25%;
     min-width: 200px;
     box-sizing: border-box;
@@ -15,6 +15,16 @@
 
 #form-section h3{
     text-align: center;
+    color:#2196f3;
+}
+
+#form-section input{
+    border: none;
+    border-bottom: 1px solid lightgray;
+}
+
+#form-section input:focus{
+    outline: none;
 }
 
 #form-section button{
@@ -31,15 +41,27 @@
 }
 
 #student-details{
-    height: 100%;
+    max-height: 90vh;
     box-sizing: border-box;
     padding: 15px;
+    overflow-y: scroll;
 }
 
 #student-details h3{
     text-align: center;
+    color:#2196f3;
 }
 
 table, th, td {
     border:1px solid black;
+}
+
+th{
+    background-color: lightgray;
+}
+
+td{
+    text-align: center;
+    padding: 5px;
+    background-color: #E6E6FA;
 }

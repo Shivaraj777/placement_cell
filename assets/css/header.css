@@ -10,7 +10,8 @@ nav{
 .nav-left span{
     display: block;
     padding-top: 1rem;
-    padding-left: 5px;
+    padding-left: 8px;
+    font-size: larger;
 }
 
 .nav-right ul{
@@ -21,6 +22,7 @@ nav{
 .nav-right ul li{
     margin-right: 15px;
     list-style: none;
+    font-size: medium;
 }
 
 a{
