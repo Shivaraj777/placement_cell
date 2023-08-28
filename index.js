@@ -8,6 +8,8 @@ const passport = require('passport'); //import passport module
 const passportLocal = require('./config/passport-local-strategy'); //import passport local strategy module from configs
 const session = require('express-session');  //import expression-session module
 const MongoStore = require('connect-mongo'); //import connect-mongo module to store session info in DB
+const flash = require('connect-flash'); //import connect-flash module for displaying the flash messages
+const customMware = require('./config/middleware'); //import custom middleware module
 
 const app =  express(); // create the express app
 const port = 8000; // define the port
@@ -58,6 +60,10 @@ app.use(passport.session()); //maintain the session
 
 // set employee in the views
 app.use(passport.setAuthenticatedUser);
+
+//use flash to display the flash messages
+app.use(flash());  //this should be used after the session cookie is set
+app.use(customMware.setFlash);  //set the flash messages in the response locals
 
 // use express router
 app.use('/', require('./routes')); //routes the request to index.js file of routes folder

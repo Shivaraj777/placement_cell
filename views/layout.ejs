@@ -8,6 +8,10 @@
     <!-- script tag to use js of jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <!-- include noty.js to use ntifications -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" integrity="sha512-0p3K0H3S6Q4bEWZ/WmC94Tgit2ular2/n0ESdfEX8l172YyQj8re1Wu9s/HT9T/T2osUw5Gx/6pAZNk3UKbESw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <link type="text/css" rel="stylesheet" href="/css/layout.css">
     <link type="text/css" rel="stylesheet" href="/css/header.css">
 
@@ -21,5 +25,31 @@
 
     <!-- include scripts for sub views -->
     <%- script -%>
+
+    <!-- Javascipt code to display flash messages in browser screen using Noty.js -->
+    <% if(flash.success && flash.success.length != 0){ %>
+        <script>
+            new Noty({
+                theme: 'relax',                // theme of the notification
+                text: '<%= flash.success %>',  // text to be displayed
+                type: 'success',   
+                layout: 'topRight',            // position of the notification
+                timeout: 1500                 // time for which the notification will be displayed  
+            }).show()
+        </script>
+    <% } %>
+
+    <% if(flash.error && flash.error.length != 0){ %>
+        <script>
+            new Noty({
+                theme: 'relax',
+                text: '<%= flash.error %>',
+                type: 'error',
+                layout: 'topRight',
+                timeout: 1500   
+            }).show()
+        </script>
+    <% } %>
+
 </body>
 </html>
