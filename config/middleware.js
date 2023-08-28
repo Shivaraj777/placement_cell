@@ -6,5 +6,5 @@ module.exports.setFlash = function(req, res, next){
         'success': req.flash('success'),
         'error': req.flash('error')
     }
-    next();
+    next(); //go to next middleware/controller action
 }

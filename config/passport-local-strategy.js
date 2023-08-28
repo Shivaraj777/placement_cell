@@ -11,14 +11,16 @@ const Employee = require('../models/employee');
 passport.use(new LocalStrategy({    //tell passport to use local startegy for authentication
         //defining the fields to be used for authentication
         usernameField: 'email',
+        passReqToCallback: true //used to pass the request to the callback function, so that we can access the request in the callback function
     },
-    function(email, password, done){   //done is a callback function which handles whether the authentication success and failure
+    function(req, email, password, done){   //done is a callback function which handles whether the authentication success and failure
         //find a employee and establish the identity
         Employee.findOne({email: email})
             .then(employee => {
                 //if employee not found or password does not match
                 if(!employee || employee.password != password){
                     console.log(`Invalid Username/Password`);
+                    req.flash('error', 'Invalid Username/Password');
                     return done(null, false);  //null -> no error, false -> autentication failed
                 }
                 //if employee is found and password matches we return the user
@@ -26,6 +28,7 @@ passport.use(new LocalStrategy({    //tell passport to use local startegy for au
             })
             .catch(err => {         //if there is an error in finding the employee
                 console.log(`Error in finding employee --> Passport`);
+                req.flash('error', err);
                 return done(err);
             });
     }

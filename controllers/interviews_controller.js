@@ -27,6 +27,7 @@ module.exports.displayInterviews = async function(req, res){
 // action to create interview
 module.exports.createInterview = async  function(req, res){
     if(req.body.comapny_name === '' || req.body.interview_date === ''){
+        req.flash('error', 'Company Name/Date cannot be blank');
         return res.redirect('back');
     }
 
@@ -37,12 +38,15 @@ module.exports.createInterview = async  function(req, res){
         // if interview does noot exist
         if(!interview){
             await Interview.create(req.body);
+            req.flash('success', 'Interview created successfully');
             return res.redirect('back');
         }else{
+            req.flash('error', 'Interview already exists');
             return res.redirect('back');
         }
     }catch(err){
         console.log(`Error: ${err}`);
+        req.flash('error', err);
         return res.redirect('back');
     }
 }
@@ -73,11 +77,13 @@ module.exports.assignInterview = async function(req, res){
             // add the interview details to student records
             student.interviews.push(interview._id);
             student.save();
+            req.flash('success', 'Student assigned to Interview');
         }
 
         return res.redirect('back');
     }catch(err){
         console.log(`Error: ${err}`);
+        req.flash('error', err);
         return;
     }
 }
@@ -95,9 +101,11 @@ module.exports.updateInterviewStatus = async function(req, res){
             console.log('*****Student placement status updated*****');
         }
 
+        req.flash('success', 'Successfully updated Student Interview result');
         res.redirect('back');
     }catch(err){
         console.log(`Error: ${err}`);
+        req.flash('error', err);
         return;
     }
 }
