@@ -36,10 +36,30 @@ module.exports.createStudent = async function(req, res){
 
         // if student does not exist, create student
         if(!student){
-            await Student.create(req.body);
+            const newStudent = await Student.create(req.body);
+
+            // if the request is an ajax request
+            if(req.xhr){
+                // return the student data in json format
+                return res.status(200).json({
+                    data: {
+                        newStudent
+                    },
+                    message: 'Student added successfully'
+                });
+            }
+
             req.flash('success', 'Student added successfully');
             return res.redirect('back');
         }else{
+            // if the request is an ajax request
+            if(req.xhr){
+                console.log('Student already exists');
+                return res.status(500).json({
+                    message: 'Student already exists'
+                });
+            }
+
             req.flash('error', 'Student already exists');
             return res.redirect('back');
         }

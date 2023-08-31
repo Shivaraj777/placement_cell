@@ -2,7 +2,7 @@
 <div id="students-container">
     <section id="form-section">
         <h3>Add new student</h3>
-        <form action="/students/create-student" method="post">
+        <form id="create-student-form" action="/students/create-student" method="post">
             <label>Name: </label><br>
             <input id="name" type="text" name="name" placeholder="Student Name" required><br><br>
             <label>Email: </label><br>
@@ -34,7 +34,7 @@
                 <th>Placement Status</th>
             </tr>
             <% for(let student of students){ %>
-                <tr>
+                <tr id="student-<%= student._id %>">
                     <td><%= student.name %></td>
                     <td><%= student.college %></td>
                     <td><%= student.batch %></td>
@@ -47,3 +47,5 @@
         </table>
     </section>
 </div>
+
+<script type="text/javascript" src="/js/student.js"></script>
