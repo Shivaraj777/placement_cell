@@ -37,10 +37,30 @@ module.exports.createInterview = async  function(req, res){
 
         // if interview does noot exist
         if(!interview){
-            await Interview.create(req.body);
+            const newInterview = await Interview.create(req.body);
+
+            // if the request is an ajax request
+            if(req.xhr){
+                // return the response in json format
+                return res.status(200).json({
+                    data: {
+                        newInterview,
+                    },
+                    message: 'Interview created successfully'
+                });
+            }
+
             req.flash('success', 'Interview created successfully');
             return res.redirect('back');
         }else{
+            // if the request is an ajax request
+            if(req.xhr){
+                console.log('Interview already exists');
+                return res.status(500).json({
+                    message: 'Interview already exists'
+                });
+            }
+
             req.flash('error', 'Interview already exists');
             return res.redirect('back');
         }
