@@ -97,6 +97,18 @@ module.exports.assignInterview = async function(req, res){
             // add the interview details to student records
             student.interviews.push(interview._id);
             student.save();
+
+            if(req.xhr){
+                return res.status(200).json({
+                    data: {
+                        student: student,
+                        interview: interview,
+                        result: result
+                    },
+                    message: 'Student assigned to interview'
+                });
+            }
+
             req.flash('success', 'Student assigned to Interview');
         }
 

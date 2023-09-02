@@ -11,9 +11,9 @@
                 <button>Create Interview</button>
             </form>
         </div>
-        <div class="assign-interview-form">
+        <div class="assign-interview-container">
             <h3>Assign Student to Interview</h3>
-            <form action="/interviews/assign-interview" method="post">
+            <form id="assign-interview-form" action="/interviews/assign-interview" method="put">
                 <label>Student Email:</label><br>
                 <select id="select-student" name="student_email" required>
                     <option value="" disabled selected hidden>Select Student</option>

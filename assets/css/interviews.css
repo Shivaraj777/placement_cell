@@ -98,7 +98,7 @@ option:not(:checked) {
 }
 
 .students-list{
-    width: 100%;
+    width: 40em;
 }
 
 .students-list table{

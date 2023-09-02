@@ -4,8 +4,8 @@
 $(document).ready(function(){
     let createInterviewForm = $('#create-interview-form'); //get createinterview form element
 
-    // event handler for form submission
-    $(createInterviewForm).submit(function(e){
+    // event handler for create interview form submission
+    createInterviewForm.submit(function(e){
         e.preventDefault();
         console.log("Create Interview");
 
@@ -42,6 +42,35 @@ $(document).ready(function(){
             }
         });
     });
+
+    // event handler for assign students to interview form submission
+    let assignInterviewForm = $('#assign-interview-form');
+
+    assignInterviewForm.submit(function(e){
+        e.preventDefault();
+
+        // make an ajax request to the server
+        $.ajax({
+            method: 'put',
+            url: '/interviews/assign-interview',
+            data: assignInterviewForm.serialize(),
+            success: function(data){
+                console.log(data);
+                let interviewStudentDetails = interviewStudentDetailsDom(data.data.student, data.data.interview, data.data.result);
+                $(`#interview-assgn-${data.data.interview._id}>table`).append(interviewStudentDetails);
+                new Noty({  //adding noty notification for sucessful interview assignment using ajax
+                    theme: 'relax',
+                    text: data.message,
+                    type: 'success',
+                    layout: 'topRight',
+                    timeout: 1500
+                }).show();
+            },
+            error: function(error){
+                console.log(error.responseText);
+            }
+        });
+    });
 });
 
 let newInterviewDom = function(interview){
@@ -67,6 +96,28 @@ let newInterviewDom = function(interview){
 // update the the select company dropdown DOM to get new interview details
 let updatedSelectCompanyDropdownDom = function(interview){
     return $(`<option value="${interview.company_name}">${interview.company_name}</option>`)
+}
+
+// create the dom for students assigned to interview
+let interviewStudentDetailsDom = function(student, interview, result){
+    return $(`<tr>
+        <td>${student.name}</td>
+        <td>${student.email}</td>
+        <td>${result.result}</td>
+        <td>
+            <form action="/interviews/update-interview-status" method="post">
+                <select name="student_interview_result">
+                    <option value="" disabled selected hidden>Update Status</option>
+                    <option value="PASS">PASS</option>
+                    <option value="FAIL">FAIL</option>
+                    <option value="ON HOLD">ON HOLD</option>
+                    <option value="DID NOT ATTEMPT">DID NOT ATTEMPT</option>
+                </select><br>
+                <input type="hidden" name="result" value="${result.id}">
+                <button>Update</button>
+            </form>
+        </td>
+    </tr>`);
 }
 
 
