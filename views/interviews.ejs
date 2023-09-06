@@ -51,14 +51,16 @@
                             <th>Update Result Status</th>
                         </tr>
                         <% for(let student of interview.students){ %>
-                            <tr>
+                            <tr id="student-<%= interview.id %>-<%= student.id %>">
                                 <td><%= student.name %></td>
                                 <td><%= student.email %></td>
                                 <% for(let result of interview.results){ %>
                                     <% if(result.studentId == student.id){ %>
-                                        <td><%= result.result %></td>
+                                        <td id="interview-result-<%= interview.id %>-<%= student.id %>">
+                                            <%= result.result %>
+                                        </td>
                                         <td>
-                                            <form action="/interviews/update-interview-status" method="post">
+                                            <form id="update-interview-result-<%= interview.id %>-<%= student.id %>" action="/interviews/update-interview-status" method="patch">
                                                 <select name="student_interview_result">
                                                     <option value="" disabled selected hidden>Update Status</option>
                                                     <option value="PASS">PASS</option>
@@ -80,5 +82,6 @@
         <% } %>
     </main>
 
+    <script type="text/javascript" src="/js/interview_students.js"></script>
     <script type="text/javascript" src="/js/interview.js"></script>
 </div>

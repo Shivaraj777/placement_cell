@@ -58,6 +58,10 @@ $(document).ready(function(){
                 console.log(data);
                 let interviewStudentDetails = interviewStudentDetailsDom(data.data.student, data.data.interview, data.data.result);
                 $(`#interview-assgn-${data.data.interview._id}>table`).append(interviewStudentDetails);
+
+                // call the class to update the interview status for a student
+                new StudentsAssignedToInterview();
+
                 new Noty({  //adding noty notification for sucessful interview assignment using ajax
                     theme: 'relax',
                     text: data.message,
@@ -138,6 +142,18 @@ let convertInterviewsToAjax = function(){
         let self = $(this);
         let displayStudentsIcon = $('.fa-angle-down', self);
         displayAssignedStudents(displayStudentsIcon);
+
+        $('.students-list>table>tbody>tr', self).each(function(){
+            let studentsRowId = $(this).attr('id');
+            // console.log(studentsRowId);
+            if(studentsRowId){
+                let ids = studentsRowId.split('-');
+                let interviewId = ids[1];
+                let studentId = ids[2];
+                // console.log(interviewId, studentId);
+                new StudentsAssignedToInterview(interviewId, studentId);
+            }
+        });
     });
 }
 

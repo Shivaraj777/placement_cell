@@ -133,6 +133,15 @@ module.exports.updateInterviewStatus = async function(req, res){
             console.log('*****Student placement status updated*****');
         }
 
+        if(req.xhr){
+            return res.status(200).json({
+                data: {
+                    result
+                },
+                message: 'Successfully updated student interview result'
+            });
+        }
+
         req.flash('success', 'Successfully updated Student Interview result');
         res.redirect('back');
     }catch(err){
