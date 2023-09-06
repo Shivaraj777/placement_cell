@@ -72,6 +72,13 @@ $(document).ready(function(){
             },
             error: function(error){
                 console.log(error.responseText);
+                new Noty({  //adding noty notification for error
+                    theme: 'relax',
+                    text: error.responseJSON.message,
+                    type: 'error',
+                    layout: 'topRight',
+                    timeout: 1500
+                }).show();
             }
         });
     });

@@ -81,35 +81,46 @@ module.exports.assignInterview = async function(req, res){
 
         // if student and interview exist in database
         if(student && interview){
-            // create a result for student interview
-            console.log("*****Creating result*****");
-            const result = await Result.create({
-                studentId: student._id,
-                interviewId: interview._id
-            });
-
-            // add the student and result to interview
-            console.log("*****Updating*****");
-            interview.students.push(student._id);
-            interview.results.push(result._id);
-            interview.save();
-
-            // add the interview details to student records
-            student.interviews.push(interview._id);
-            student.save();
-
-            if(req.xhr){
-                return res.status(200).json({
-                    data: {
-                        student: student,
-                        interview: interview,
-                        result: result
-                    },
-                    message: 'Student assigned to interview'
+            if(!interview.students.includes(student._id)){
+                // create a result for student interview
+                console.log("*****Creating result*****");
+                const result = await Result.create({
+                    studentId: student._id,
+                    interviewId: interview._id
                 });
-            }
 
-            req.flash('success', 'Student assigned to Interview');
+                // add the student and result to interview
+                console.log("*****Updating*****");
+                interview.students.push(student._id);
+                interview.results.push(result._id);
+                interview.save();
+
+                // add the interview details to student records
+                student.interviews.push(interview._id);
+                student.save();
+
+                if(req.xhr){
+                    return res.status(200).json({
+                        data: {
+                            student: student,
+                            interview: interview,
+                            result: result
+                        },
+                        message: 'Student assigned to interview'
+                    });
+                }
+
+                req.flash('success', 'Student assigned to Interview');
+            }else{
+                // if request is an ajax request
+                if(req.xhr){
+                    return res.status(500).json({
+                        message: 'Student already assigned to company interview'
+                    });
+                }
+                req.flash('error', 'Student already assigned to company interview');
+                res.redirect('back');
+            }
         }
 
         return res.redirect('back');
