@@ -1,9 +1,11 @@
+/* Interview view */
 #interview-page-container{
     width: 100%;
     display: flex;
     flex-direction: row;
 }
 
+/* Forms section of interview page */
 #forms-container{
     height: 91.5vh;
     width: 25%;
@@ -57,10 +59,12 @@ option:not(:checked) {
     cursor: pointer;
 }
 
+/* Create interview Form section */
 .create-interview-container{
     margin-bottom: 4rem;
 }
 
+/* Interview details section */
 #interview-details-view{
     width: 75%;
     max-height: 90vh;
@@ -97,6 +101,7 @@ option:not(:checked) {
     cursor: pointer;
 }
 
+/* styling for students list of interview */
 .students-list{
     width: 40em;
 }

@@ -99,6 +99,7 @@ module.exports.assignInterview = async function(req, res){
                 student.interviews.push(interview._id);
                 student.save();
 
+                // if the request is an ajax request
                 if(req.xhr){
                     return res.status(200).json({
                         data: {
@@ -114,12 +115,12 @@ module.exports.assignInterview = async function(req, res){
             }else{
                 // if request is an ajax request
                 if(req.xhr){
+                    console.log('Student already assigned to company interview');
                     return res.status(500).json({
                         message: 'Student already assigned to company interview'
                     });
                 }
                 req.flash('error', 'Student already assigned to company interview');
-                res.redirect('back');
             }
         }
 
@@ -144,6 +145,7 @@ module.exports.updateInterviewStatus = async function(req, res){
             console.log('*****Student placement status updated*****');
         }
 
+        // if the request is an ajax request
         if(req.xhr){
             return res.status(200).json({
                 data: {
@@ -154,7 +156,7 @@ module.exports.updateInterviewStatus = async function(req, res){
         }
 
         req.flash('success', 'Successfully updated Student Interview result');
-        res.redirect('back');
+        return res.redirect('back');
     }catch(err){
         console.log(`Error: ${err}`);
         req.flash('error', err);

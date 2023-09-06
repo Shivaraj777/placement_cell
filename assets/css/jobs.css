@@ -1,14 +1,17 @@
+/* Jobs page/view */
 #jobs-list-container{
     display:flex;
     flex-direction: column;
     padding: 15px;
 }
 
+/* page header */
 #jobs-list-container h1{
     text-align: center;
     color: #2196f3;
 }
 
+/* Job container */
 .job-container{
     height: 20rem;
     width: 35em;

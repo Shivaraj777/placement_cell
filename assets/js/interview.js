@@ -16,8 +16,8 @@ $(document).ready(function(){
             data: createInterviewForm.serialize(),
             success: function(data){
                 console.log(data);
-                let newInterview = newInterviewDom(data.data.newInterview);
-                $('#interview-details-view').append(newInterview);
+                let newInterview = newInterviewDom(data.data.newInterview); //create new interview dom
+                $('#interview-details-view').append(newInterview); //apend the new interview
                 let updatedSelectCompanyDropdown = updatedSelectCompanyDropdownDom(data.data.newInterview);
                 $('#select-company').append(updatedSelectCompanyDropdown);
                 displayAssignedStudents($('.fa-angle-down', newInterview));
@@ -84,6 +84,7 @@ $(document).ready(function(){
     });
 });
 
+// create a new interview
 let newInterviewDom = function(interview){
     return $(`<div class="interview-container">
         <div class="interview-details">
@@ -148,17 +149,16 @@ let convertInterviewsToAjax = function(){
     $('.interview-container').each(function(){
         let self = $(this);
         let displayStudentsIcon = $('.fa-angle-down', self);
-        displayAssignedStudents(displayStudentsIcon);
+        displayAssignedStudents(displayStudentsIcon); //call function to display the students assigned to interview
 
         $('.students-list>table>tbody>tr', self).each(function(){
+            // get interviewId and studentId from students row
             let studentsRowId = $(this).attr('id');
-            // console.log(studentsRowId);
             if(studentsRowId){
                 let ids = studentsRowId.split('-');
                 let interviewId = ids[1];
                 let studentId = ids[2];
-                // console.log(interviewId, studentId);
-                new StudentsAssignedToInterview(interviewId, studentId);
+                new StudentsAssignedToInterview(interviewId, studentId); //instance to update student result
             }
         });
     });

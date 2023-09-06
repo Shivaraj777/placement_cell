@@ -7,6 +7,7 @@ $(document).ready(function(){
     createStudentForm.submit(function(e){
         e.preventDefault(); //prevent default behaviour of form
 
+        // make an ajax request to server
         $.ajax({
             type: 'post',
             url: '/students/create-student',

@@ -1,9 +1,11 @@
+/* Students view/page */
 #students-container{
     width: 100%;
     display: flex;
     flex-direction: row;
 }
 
+/* Form section for adding a student to placement cell */
 #form-section{
     height: 91.5vh;
     width: 25%;
@@ -40,6 +42,7 @@
     cursor: pointer;
 }
 
+/* Student details section */
 #student-details{
     max-height: 90vh;
     box-sizing: border-box;
