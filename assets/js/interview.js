@@ -60,7 +60,7 @@ $(document).ready(function(){
                 $(`#interview-assgn-${data.data.interview._id}>table`).append(interviewStudentDetails);
 
                 // call the class to update the interview status for a student
-                new StudentsAssignedToInterview();
+                new StudentsAssignedToInterview(data.data.interview._id, data.data.student._id);
 
                 new Noty({  //adding noty notification for sucessful interview assignment using ajax
                     theme: 'relax',
@@ -115,9 +115,11 @@ let interviewStudentDetailsDom = function(student, interview, result){
     return $(`<tr>
         <td>${student.name}</td>
         <td>${student.email}</td>
-        <td>${result.result}</td>
+        <td id="interview-result-${interview._id}-${student._id}">
+            ${result.result}
+        </td>
         <td>
-            <form action="/interviews/update-interview-status" method="post">
+            <form id="update-interview-result-${interview._id}-${student._id}" action="/interviews/update-interview-status" method="patch">
                 <select name="student_interview_result">
                     <option value="" disabled selected hidden>Update Status</option>
                     <option value="PASS">PASS</option>
@@ -125,7 +127,7 @@ let interviewStudentDetailsDom = function(student, interview, result){
                     <option value="ON HOLD">ON HOLD</option>
                     <option value="DID NOT ATTEMPT">DID NOT ATTEMPT</option>
                 </select><br>
-                <input type="hidden" name="result" value="${result.id}">
+                <input type="hidden" name="result" value="${result._id}">
                 <button>Update</button>
             </form>
         </td>
