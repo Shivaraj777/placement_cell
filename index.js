@@ -12,7 +12,7 @@ const flash = require('connect-flash'); //import connect-flash module for displa
 const customMware = require('./config/middleware'); //import custom middleware module
 
 const app =  express(); // create the express app
-const port = 8000; // define the port
+const port = process.env.port || 8000; // define the port
 
 // set the view engine
 app.set('view engine', 'ejs');
