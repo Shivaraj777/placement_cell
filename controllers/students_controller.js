@@ -14,7 +14,7 @@ module.exports.displayStudents = async function(req, res){
 
         // render the page
         return res.render('students', {
-            title: 'Student Details page',
+            title: 'Placement Cell || Students detail page',
             students: students
         });
     }catch(err){
