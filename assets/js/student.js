@@ -16,6 +16,7 @@ $(document).ready(function(){
                 console.log(data);
                 let newStudent = newStudentDom(data.data.newStudent); //create a new student row
                 $('#student-details>table').append(newStudent); //append the new student row to table
+                createStudentForm.trigger('reset');
                 new Noty({  //adding noty notification for sucessful student creation using ajax
                     theme: 'relax',
                     text: data.message,
@@ -26,6 +27,7 @@ $(document).ready(function(){
             },
             error: function(error){
                 console.log(error.responseText);
+                createStudentForm.trigger('reset');
                 new Noty({  //adding noty notification for error
                     theme: 'relax',
                     text: error.responseJSON.message,

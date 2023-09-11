@@ -21,6 +21,7 @@ $(document).ready(function(){
                 let updatedSelectCompanyDropdown = updatedSelectCompanyDropdownDom(data.data.newInterview);
                 $('#select-company').append(updatedSelectCompanyDropdown);
                 displayAssignedStudents($('.fa-angle-down', newInterview));
+                createInterviewForm.trigger('reset');
 
                 new Noty({  //adding noty notification for sucessful interview creation using ajax
                     theme: 'relax',
@@ -32,6 +33,7 @@ $(document).ready(function(){
             },
             error: function(error){
                 console.log(error.responseText);
+                createInterviewForm.trigger('reset');
                 new Noty({  //adding noty notification for error
                     theme: 'relax',
                     text: error.responseJSON.message,
@@ -62,6 +64,8 @@ $(document).ready(function(){
                 // call the class to update the interview status for a student
                 new StudentsAssignedToInterview(data.data.interview._id, data.data.student._id);
 
+                assignInterviewForm.trigger('reset');
+
                 new Noty({  //adding noty notification for sucessful interview assignment using ajax
                     theme: 'relax',
                     text: data.message,
@@ -72,6 +76,7 @@ $(document).ready(function(){
             },
             error: function(error){
                 console.log(error.responseText);
+                assignInterviewForm.trigger('reset');
                 new Noty({  //adding noty notification for error
                     theme: 'relax',
                     text: error.responseJSON.message,
@@ -89,7 +94,7 @@ let newInterviewDom = function(interview){
     return $(`<div class="interview-container">
         <div class="interview-details">
             <span>${interview.company_name}</span>
-            <span>${interview.interview_date}</span>
+            <span>${formatDate(interview.interview_date)}</span>
             <i id="${interview._id}" class="fa-solid fa-angle-down"></i>
         </div>
         <div class="students-list display-none" id="interview-assgn-${interview._id}">
@@ -132,6 +137,31 @@ let interviewStudentDetailsDom = function(student, interview, result){
             </form>
         </td>
     </tr>`);
+}
+
+// function to padd zeros
+let padZero = function(number){
+    return number.toString().padStart(2, "0");
+}
+  
+// convert date to mm/dd/yyy hh:mm format
+let formatDate = function(dateString){
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, "0");
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const year = date.getFullYear();
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+    const period = hours >= 12 ? " PM" : " AM";
+  
+    // Convert hours to 12-hour format and handle midnight (12:00am) and noon (12:00pm)
+    if (hours === 0) {
+      hours = 12;
+    } else if (hours > 12) {
+      hours -= 12;
+    }
+  
+    return `${month}/${day}/${year} ${hours}:${padZero(minutes)}${period}`;
 }
 
 
