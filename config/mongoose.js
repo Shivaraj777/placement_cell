@@ -2,8 +2,10 @@
 
 //require the mongoose module
 const mongoose = require('mongoose');
+const env = require('./environment');
+
 //connect to mongodb database with the help of mongoose
-mongoose.connect('mongodb://127.0.0.1/placement_cell');
+mongoose.connect(env.mongo_CONNECT_URL);
 
 //establish the connection to the database
 const db = mongoose.connection;
