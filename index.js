@@ -38,7 +38,7 @@ app.use(expressLayouts);
 // use expression session middleware to maintain the session cookies
 app.use(session({
     name: 'placement_cell', //name of the session cookie
-    secret: 'somesecretcode', //secret key used to encrypt the session-cookie
+    secret: env.session_cookie_key, //secret key used to encrypt the session-cookie
     saveUninitialized: false, //if user is not logged in, do not save session-cookie
     resave: false, //if the session-cookie is not modified do not save it
     cookie: {
