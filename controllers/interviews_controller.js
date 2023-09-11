@@ -13,7 +13,7 @@ module.exports.displayInterviews = async function(req, res){
         const students = await Student.find({});
 
         return res.render('interviews', {
-            title: 'Placemnet Cell || Interviews detail page',
+            title: 'Placement Cell || Interviews detail page',
             interviews: interviews,
             students: students,
             formatDate: formatDate
