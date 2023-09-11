@@ -40,3 +40,7 @@ A company constantly needs to download their data to compile different reports. 
 - Use command, npm install to install all the dependencies.
 - use "npm start" command to run the application.
 - Open a new tab in any web browser and access the application using localhost:8000
+
+## Hosting
+
+- Hosted on: https://placement-cell-app-i3d5.onrender.com/students/display-students
