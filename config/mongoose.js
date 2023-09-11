@@ -15,7 +15,6 @@ db.on('error', console.error.bind(console, 'Error connecting to MongoDB'));
 
 //if connection is successful
 db.once('open', function(){
-    console.log(env.mongo_CONNECT_URL);
     console.log("Successfully connected to the database");
 });
 

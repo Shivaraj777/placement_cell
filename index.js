@@ -10,6 +10,7 @@ const session = require('express-session');  //import expression-session module
 const MongoStore = require('connect-mongo'); //import connect-mongo module to store session info in DB
 const flash = require('connect-flash'); //import connect-flash module for displaying the flash messages
 const customMware = require('./config/middleware'); //import custom middleware module
+const env = require('./config/environment');
 
 const app =  express(); // create the express app
 const port = process.env.port || 8000; // define the port
@@ -45,7 +46,7 @@ app.use(session({
     },
     store: new MongoStore(
         {
-            mongoUrl: 'mongodb://127.0.0.1/placement_cell',  //connecting to the database
+            mongoUrl: env.mongo_CONNECT_URL,  //connecting to the database
             autoRemove: 'disabled'  //do not remove the session from the database even if it expires
         },
         function(err){
