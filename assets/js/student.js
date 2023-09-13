@@ -13,7 +13,7 @@ $(document).ready(function(){
             url: '/students/create-student',
             data: createStudentForm.serialize(), //converting the form data into a query string(json object) and sending it to the server
             success: function(data){
-                console.log(data);
+                // console.log(data);
                 let newStudent = newStudentDom(data.data.newStudent); //create a new student row
                 $('#student-details>table').append(newStudent); //append the new student row to table
                 createStudentForm.trigger('reset');

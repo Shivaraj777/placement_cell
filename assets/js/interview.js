@@ -7,7 +7,7 @@ $(document).ready(function(){
     // event handler for create interview form submission
     createInterviewForm.submit(function(e){
         e.preventDefault();
-        console.log("Create Interview");
+        // console.log("Create Interview");
 
         // make an Ajax request to the server
         $.ajax({
@@ -15,7 +15,7 @@ $(document).ready(function(){
             url: '/interviews/create-interview',
             data: createInterviewForm.serialize(),
             success: function(data){
-                console.log(data);
+                // console.log(data);
                 let newInterview = newInterviewDom(data.data.newInterview); //create new interview dom
                 $('#interview-details-view').append(newInterview); //apend the new interview
                 let updatedSelectCompanyDropdown = updatedSelectCompanyDropdownDom(data.data.newInterview);
@@ -57,7 +57,7 @@ $(document).ready(function(){
             url: '/interviews/assign-interview',
             data: assignInterviewForm.serialize(),
             success: function(data){
-                console.log(data);
+                // console.log(data);
                 let interviewStudentDetails = interviewStudentDetailsDom(data.data.student, data.data.interview, data.data.result);
                 $(`#interview-assgn-${data.data.interview._id}>table`).append(interviewStudentDetails);
 
@@ -169,7 +169,7 @@ let formatDate = function(dateString){
 let displayAssignedStudents = function(displayStudentsIcon){
     $(displayStudentsIcon).click(function(e){
         e.preventDefault();
-        console.log('Clicked');
+        // console.log('Clicked');
         let interviewId = $(this).attr('id');
 
         $(`#interview-assgn-${interviewId}`).toggleClass('display-none');

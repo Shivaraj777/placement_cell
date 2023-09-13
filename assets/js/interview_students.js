@@ -19,7 +19,7 @@ class StudentsAssignedToInterview{
                 url: '/interviews/update-interview-status',
                 data: this.updateInterviewResultForm.serialize(),
                 success: (data) => {
-                    console.log(data);
+                    // console.log(data);
                     let updatedStudentResult = this.updateStudentResultDom(data.data.result); //call function to update student result element
                     $(`#interview-result-${data.data.result.interviewId}-${data.data.result.studentId}`).replaceWith(updatedStudentResult); //update the student result for interview
                     new Noty({  //adding noty notification for sucessful result updation using ajax
